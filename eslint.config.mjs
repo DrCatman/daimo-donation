@@ -1,18 +1,20 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import globals from 'globals';
+import tseslint from "typescript-eslint";
+import globals from "globals";
 
 export default [
-  { ignores: ['dist', 'node_modules'] },
-  js.configs.recommended,
+  { ignores: ["node_modules", "public", "src/donate"] },
   ...tseslint.configs.recommended,
   {
-    files: ['esbuild.config.mjs'],
+    files: ["src/**/*.{ts,tsx}"],
     languageOptions: {
-      globals: globals.node,
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
   },
   {
-    rules: {},
+    files: ["esbuild.config.mjs"],
+    languageOptions: {
+      globals: globals.node,
+    },
   },
 ];

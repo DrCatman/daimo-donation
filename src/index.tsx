@@ -1,15 +1,14 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { App } from './App';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App";
+import { Providers } from "./providers";
 
-const container = document.getElementById('root');
-if (!container) {
-  throw new Error('root element not found');
-}
+const root = createRoot(document.querySelector("#root")!);
 
-const root = createRoot(container);
 root.render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <Providers>
+      <App />
+    </Providers>
+  </StrictMode>
 );

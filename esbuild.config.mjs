@@ -7,13 +7,15 @@ rmSync("dist", { recursive: true, force: true });
 
 const common = {
   entryPoints: ["src/index.tsx"],
-  outdir: "dist",
+  outdir: "public/dist",
   bundle: true,
+  splitting: true,
+  outbase: "src",
   platform: "browser",
   format: "esm",
   sourcemap: true,
   target: ["es2022"],
-  loader: { ".png": "file", ".svg": "file" },
+  loader: { ".png": "file", ".svg": "file", ".css": "css" },
 };
 
 if (isWatch) {
@@ -21,10 +23,10 @@ if (isWatch) {
   await ctx.watch();
   const server = await ctx.serve({
     host: "localhost",
-    port: 5173,
-    servedir: ".",
+    port: 8000,
+    servedir: "public",
   });
-  console.log(`dev server http://${server.host}:${server.port}`);
+  console.log(`dev server http://localhost:${server.port}`);
 } else {
   await esbuild.build(common);
 }

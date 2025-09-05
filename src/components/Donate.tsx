@@ -1,0 +1,105 @@
+import { useMemo, useState } from "react";
+import { DaimoPayButton } from "@daimo/pay";
+import type { Address } from "viem";
+import { daimo } from "../config";
+
+export function Donate({ onSuccess }: { onSuccess: () => void }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const emailValid = useEmailValid(email);
+  const phoneValid = usePhoneValid(phone);
+  const isReady = useMemo(() => {
+    if (!name || !emailValid) return false;
+    if (phone.trim() && !phoneValid) return false;
+    return true;
+  }, [name, emailValid, phone, phoneValid]);
+
+  return (
+    <form className="donate-form" onSubmit={(e) => e.preventDefault()}>
+      <LabeledInput label="Name">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </LabeledInput>
+      <div className="spacer-16" />
+      <LabeledInput label="Email">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </LabeledInput>
+      <div className="spacer-16" />
+      <LabeledInput
+        label={
+          <span className="label-row">
+            <span>Phone</span>
+            <span className="optional">optional</span>
+          </span>
+        }
+      >
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </LabeledInput>
+      <div className="spacer-16" />
+      <DaimoPayButton.Custom
+        appId={daimo.appId}
+        toChain={daimo.toChain}
+        toToken={daimo.toToken as Address}
+        toAddress={daimo.toAddress as Address}
+        intent="Donate"
+        redirectReturnUrl={daimo.returnUrl}
+        metadata={{ name, email, phone }}
+        onPaymentCompleted={() => onSuccess()}
+      >
+        {({ show }) => (
+          <button type="button" onClick={show} disabled={!isReady}>
+            Donate
+          </button>
+        )}
+      </DaimoPayButton.Custom>
+      <div className="spacer-16" />
+      <p className="fine-print">
+        Acme Foundation is a 501c3 exempt non-profit organization. Donations are
+        tax deductible.
+      </p>
+    </form>
+  );
+}
+
+function LabeledInput({
+  label,
+  children,
+}: {
+  label: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <label>
+      {label}
+      {children}
+    </label>
+  );
+}
+
+function useEmailValid(email: string): boolean {
+  // minimal pattern: something@something.tld (no spaces)
+  return useMemo(() => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(email), [email]);
+}
+
+function usePhoneValid(phone: string): boolean {
+  // minimal pattern: digits, spaces, dashes, parentheses, plus; at least 7 digits
+  return useMemo(() => {
+    const digits = (phone.match(/\d/g) || []).length;
+    return /^[+()\d\s-]*$/.test(phone) && digits >= 7;
+  }, [phone]);
+}

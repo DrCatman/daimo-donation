@@ -1,0 +1,107 @@
+/* Reset & base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Basic typography & links */
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #000;
+  text-decoration: underline;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Layout */
+
+main {
+  padding: 16px;
+  margin: 0 auto;
+  max-width: 512px;
+}
+
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.spacer-16 {
+  height: 16px;
+}
+.spacer-8 {
+  height: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Donate form */
+
+.donate-form label {
+  display: grid;
+  gap: 6px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.donate-form input[type="text"],
+.donate-form input[type="tel"],
+.donate-form input[type="email"] {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.donate-form button {
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.donate-form .optional {
+  color: #999;
+  font-weight: normal;
+}
+
+.donate-form .label-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.donate-form .fine-print {
+  color: #666;
+  font-size: 12px;
+  line-height: 1.4;
+}

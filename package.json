@@ -25,7 +25,11 @@
     "typescript-eslint": "^8.41.0"
   },
   "dependencies": {
+    "@daimo/pay": "^1.16.5",
+    "@tanstack/react-query": "^5.85.5",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "viem": "^2.36.0",
+    "wagmi": "^2.16.8"
   }
 }
