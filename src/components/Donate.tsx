@@ -69,7 +69,7 @@ export function Donate({ onSuccess }: { onSuccess: () => void }) {
       </DaimoPayButton.Custom>
       <div className="spacer-16" />
       <p className="fine-print">
-        Acme Foundation is a 501c3 exempt non-profit organization. Donations are
+        Avalon Institute is a fiscally sponsored project of the Mars Review of Books Foundation, a 501(c)3 non-profit organization (EIN: 92-1553880). Donations are
         tax deductible.
       </p>
     </form>
