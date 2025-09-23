@@ -12,7 +12,7 @@
     "test": "npm run typecheck && npm run lint"
   },
   "engines": {
-    "node": "^22.0.0"
+    "node": "22.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.12",
