@@ -1,12 +1,12 @@
 export const daimo = {
   // REQUIRED: replace with your App ID
-  appId: "pay-demo",
+  appId: "pay-dsro-k8FUu4522lQwP",
   // Base chain id
-  toChain: 8453,
+  toChain: 10,
   // Base USDC
   toToken: "0x833589fCD6eDb6E08f4c7C32D4f71B54bdA02913" as const,
   // REQUIRED: destination address to receive funds
-  toAddress: "0xc60A0A0E8bBc32DAC2E03030989AD6BEe45A874D",
+  toAddress: "0xc25132E7B939D689d402B11E3831b0b31a521Ab6",
   // Where to return after donation
-  returnUrl: "https://example.org/",
+  returnUrl: "https://www.avalonhouse.org/",
 };
