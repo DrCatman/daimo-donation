@@ -13,8 +13,7 @@ export function Donate({ onSuccess }: { onSuccess: () => void }) {
   const addressValid = useAddressValid(address);
   const phoneValid = usePhoneValid(phone);
   const isReady = useMemo(() => {
-    if (!name || !emailValid) return false;
-    if (address.trim() && !addressValid) return false;
+    if (!name || !emailValid || !address || !addressValid) return false;
     if (phone.trim() && !phoneValid) return false;
     return true;
   }, [name, emailValid, address, addressValid, phone, phoneValid]);
