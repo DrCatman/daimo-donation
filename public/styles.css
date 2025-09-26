@@ -76,7 +76,6 @@ main {
 
 .donate-form input[type="text"],
 .donate-form input[type="tel"],
-.donate-form input[type="address"],
 .donate-form input[type="email"] {
   padding: 8px 12px;
   border: 1px solid #ddd;

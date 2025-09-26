@@ -42,7 +42,7 @@ export function Donate({ onSuccess }: { onSuccess: () => void }) {
             <div className="spacer-16" />
             <LabeledInput label="Address">
               <input
-                type="address"
+                type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
