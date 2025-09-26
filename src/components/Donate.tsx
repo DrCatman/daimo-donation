@@ -110,6 +110,17 @@ function useEmailValid(email: string): boolean {
   return useMemo(() => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(email), [email]);
 }
 
+function useAddressValid(address: string): boolean {
+  // Require at least 10 characters, and at least one digit and one letter
+  return useMemo(() => {
+    return (
+      address.trim().length >= 10 &&
+      /[A-Za-z]/.test(address) &&
+      /\d/.test(address)
+    );
+  }, [address]);
+}
+
 function usePhoneValid(phone: string): boolean {
   // minimal pattern: digits, spaces, dashes, parentheses, plus; at least 7 digits
   return useMemo(() => {
