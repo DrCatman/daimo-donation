@@ -6,15 +6,18 @@ import { daimo } from "../config";
 export function Donate({ onSuccess }: { onSuccess: () => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
 
   const emailValid = useEmailValid(email);
+  const addressValid = useAddressValid(address);
   const phoneValid = usePhoneValid(phone);
   const isReady = useMemo(() => {
     if (!name || !emailValid) return false;
+    if (address.trim() && !addressValid) return false;
     if (phone.trim() && !phoneValid) return false;
     return true;
-  }, [name, emailValid, phone, phoneValid]);
+  }, [name, emailValid, address, addressValid, phone, phoneValid]);
 
   return (
     <form className="donate-form" onSubmit={(e) => e.preventDefault()}>
@@ -34,6 +37,17 @@ export function Donate({ onSuccess }: { onSuccess: () => void }) {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
+      </LabeledInput>
+            <div className="spacer-16" />
+            <LabeledInput label="Address">
+              <input
+                type="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+
       </LabeledInput>
       <div className="spacer-16" />
       <LabeledInput
@@ -58,7 +72,7 @@ export function Donate({ onSuccess }: { onSuccess: () => void }) {
         toAddress={daimo.toAddress as Address}
         intent="Donate"
         redirectReturnUrl={daimo.returnUrl}
-        metadata={{ name, email, phone }}
+        metadata={{ name, email, address, phone }}
         onPaymentCompleted={() => onSuccess()}
       >
         {({ show }) => (
