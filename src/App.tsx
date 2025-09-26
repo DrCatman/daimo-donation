@@ -10,7 +10,7 @@ export function App() {
       <h1>Avalon Institute</h1>
       <p>
         {completed
-          ? "Thank you!"
+          ? "Thank you! An email will be sent with receipt of your donation."
           : "Now accepting donations in stablecoins and crypto."}{" "}
         <a href={daimo.returnUrl}>Return to Avalon Institute</a>
       </p>
